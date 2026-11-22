@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nukkad Café: made to order</title>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3ea;--wall:#c9dcc3;--panel:#fff;--ink:#1c2b2a;--mute:#566866;--line:#c8d8c4;--chk:#2f7d4f;--tab:#f6f6f0;--chalk:#1d3326;--cink:#eef5ee;--shadow:#a9c7ba;--sky1:#d6ecd8;--sky2:#f1f9ea;--leaf1:#8fc08a;--leaf2:#6aa56c;--leaf3:#b5d9a6;--onacc:#fff;--wood1:#a06f46;--wood2:#6e4628;--curt1:#d94a3d;--curt2:#9c261f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a14;--wall:#1d3a2a;--panel:#162419;--ink:#eaf3ef;--mute:#9db5b0;--line:#2b4636;--shadow:#0b1a17;--sky1:#16301f;--sky2:#3b6b4a;--leaf1:#2c5a3c;--leaf2:#244a31;--leaf3:#3a704b;--chk:#5cc88a;--onacc:#06210f;--wood1:#5e3d24;--wood2:#35210f;--curt1:#8f2a24;--curt2:#5c1612;}}
+:root[data-theme="dark"]{--bg:#0e1a14;--wall:#1d3a2a;--panel:#162419;--ink:#eaf3ef;--mute:#9db5b0;--line:#2b4636;--shadow:#0b1a17;--sky1:#16301f;--sky2:#3b6b4a;--leaf1:#2c5a3c;--leaf2:#244a31;--leaf3:#3a704b;--chk:#5cc88a;--onacc:#06210f;--wood1:#5e3d24;--wood2:#35210f;--curt1:#8f2a24;--curt2:#5c1612;}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Hanken Grotesk",system-ui,sans-serif}
+h1,h2,h3{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;margin:0;line-height:1.1}
+html,body{height:100%;overflow:hidden}body{margin:0}
+.brand{font-size:1.35rem;color:var(--chk)}
+main{position:fixed;top:env(safe-area-inset-top,0px);bottom:env(safe-area-inset-bottom,0px);left:0;right:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,440px)}
+@media(max-width:800px){main{grid-template-columns:1fr;grid-template-rows:minmax(0,46%) minmax(0,54%)}.panel{border-left:0!important;border-top:3px solid var(--line)}}
+.stage{position:relative;height:100%;display:flex;align-items:center;justify-content:center;background:var(--wall);overflow:hidden;isolation:isolate}
+#scene{position:absolute;inset:0;width:100%;height:100%;max-width:none;aspect-ratio:auto;z-index:-1}
+@keyframes sw{from{transform:translateX(-7px)}to{transform:translateX(7px)}}
+#cup{filter:drop-shadow(0 6px 5px rgba(0,0,0,.3))}
+.drift{animation:sw 9s ease-in-out infinite alternate}
+svg{display:block;height:84%;width:auto;max-width:100%;aspect-ratio:1/1;overflow:visible}
+.chalk{position:absolute;top:12px;left:12px;right:64px;z-index:2;background:var(--chalk);color:var(--cink);border-radius:10px;padding:8px 14px;font-size:.92rem;display:flex;align-items:center}
+.fs{position:absolute;top:12px;right:12px;z-index:2;width:42px;height:42px;border-radius:10px;border:0;background:var(--chalk);color:var(--cink);font-size:1.2rem;cursor:pointer}
+#view{display:flex;flex-direction:column;gap:14px}
+.done{text-align:center;align-items:center;padding:24px 0}.done .ck{width:84px;height:84px;border-radius:50%;background:#2f9e63;color:#fff;font-size:2.8rem;display:grid;place-items:center;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+.done .tok{font:400 3rem "Alfa Slab One",Georgia,serif;color:var(--chk)}@keyframes pop{from{transform:scale(.4);opacity:0}}
+.tool{opacity:0;transition:opacity .3s}.tool.on{opacity:1}
+.work{animation:wk .35s infinite alternate}@keyframes wk{to{transform:translateY(2px)}}
+.bub circle{opacity:0}.boil .bub circle{animation:bb 1s infinite}.boil .bub circle:nth-child(2){animation-delay:.3s}.boil .bub circle:nth-child(3){animation-delay:.6s}
+@keyframes bb{0%{opacity:0;transform:translateY(8px)}50%{opacity:.9}100%{opacity:0;transform:translateY(-6px)}}
+.steam path{fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;opacity:0}.hot .steam path{animation:rise 3s infinite}.hot .steam path:nth-child(2){animation-delay:1s}.hot .steam path:nth-child(3){animation-delay:2s}
+@keyframes rise{0%{transform:translateY(10px);opacity:0}30%{opacity:.7}100%{transform:translateY(-30px);opacity:0}}
+.panel{display:flex;flex-direction:column;gap:14px;overflow:auto;padding:18px 22px 28px;background:var(--bg);border-left:3px solid var(--line)}
+h2{font-size:clamp(1.6rem,4.5vw,2.3rem)}h3{font-size:1.05rem;margin-top:4px}
+.sub{color:var(--mute);margin:0;font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.opt{font:600 .95rem "Hanken Grotesk",sans-serif;color:var(--ink);background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;text-align:left}
+.opt small{display:block;font-weight:400;color:var(--mute)}.opt[aria-pressed="true"]{border-color:var(--chk);background:color-mix(in srgb,var(--chk) 10%,var(--panel))}
+.opt:hover{border-color:var(--ink)}
+.btn{font:700 1rem "Hanken Grotesk",sans-serif;border:0;border-radius:12px;padding:13px 22px;cursor:pointer;background:var(--chk);color:var(--onacc)}.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}.btn:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px 16px;font-size:.92rem}
+.card ul{margin:6px 0 0;padding:0;list-style:none}.card li{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+.ticket{background:var(--chalk);color:var(--cink);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.ticket h2{color:#ffd9a8}.ticket .sub{color:#b9ccc4}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.steps li{display:flex;gap:10px;align-items:center;padding:6px 10px;border-radius:8px;opacity:.45;transition:opacity .3s,background .3s}
+.steps li.now{opacity:1;background:rgba(255,255,255,.12)}.steps li.done{opacity:.8}.steps li i{width:20px;height:20px;border-radius:50%;border:2px dashed #7f9a90;flex:none;display:grid;place-items:center;font-style:normal;font-size:.75rem}
+.steps li.done i{background:#7bd3a0;border:0;color:#10281c}.steps li.now i{border:2px solid #ffd9a8}
+.bar{height:10px;background:rgba(255,255,255,.15);border-radius:5px;overflow:hidden}.bar b{display:block;height:100%;width:0;background:#ffd9a8;transition:width .5s}
+.pills{display:flex;gap:6px;flex-wrap:wrap}.pills span{padding:4px 10px;border-radius:99px;border:1.5px solid #5d7a70;font-size:.82rem;opacity:.6}.pills span.on{background:#7bd3a0;color:#10281c;border-color:#7bd3a0;opacity:1}
+.note{font-size:.8rem;color:var(--mute)}
+@media(prefers-reduced-motion:reduce){.drift,.taxi{animation:none!important}*{animation-duration:.01s!important;transition:none!important}}
+</style></head><body>
+<main>
+<section class="stage" id="stage">
+<svg id="scene" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs>
+<radialGradient id="glow" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--wood1)"/><stop offset="1" style="stop-color:var(--wood2)"/></linearGradient>
+<path id="lf" d="M0 0C-16 -22 -12 -58 0 -84C12 -58 16 -22 0 0z"/>
+</defs>
+<rect width="1000" height="600" style="fill:var(--wall)"/>
+<ellipse cx="500" cy="300" rx="420" ry="260" fill="url(#glow)"/>
+<rect x="0" y="440" width="1000" height="160" fill="url(#wood)"/><rect x="0" y="440" width="1000" height="4" fill="#fff" opacity=".2"/>
+<path d="M300 440h400l150 160H150z" fill="#fff" opacity=".07"/>
+<ellipse cx="245" cy="506" rx="52" ry="7" fill="#000" opacity=".18"/><ellipse cx="765" cy="506" rx="50" ry="7" fill="#000" opacity=".18"/>
+<g><use href="#lf" transform="translate(245 452) rotate(-62) scale(1.0)" style="fill:var(--leaf1)"/><use href="#lf" transform="translate(245 452) rotate(-38) scale(1.35)" style="fill:var(--leaf2)"/><use href="#lf" transform="translate(245 452) rotate(-14) scale(1.55)" style="fill:var(--leaf3)"/><use href="#lf" transform="translate(245 452) rotate(10) scale(1.5)" style="fill:var(--leaf1)"/><use href="#lf" transform="translate(245 452) rotate(34) scale(1.3)" style="fill:var(--leaf2)"/><use href="#lf" transform="translate(245 452) rotate(58) scale(1.0)" style="fill:var(--leaf3)"/><path d="M207 446h76l-8 64a8 8 0 0 1-8 7h-44a8 8 0 0 1-8-7z" fill="#f4f1e8"/><rect x="207" y="444" width="76" height="9" rx="4" fill="#e6e1d2"/></g><g><use href="#lf" transform="translate(765 452) rotate(-50) scale(1.1)" style="fill:var(--leaf1)"/><use href="#lf" transform="translate(765 452) rotate(-26) scale(1.4)" style="fill:var(--leaf2)"/><use href="#lf" transform="translate(765 452) rotate(-4) scale(1.5)" style="fill:var(--leaf3)"/><use href="#lf" transform="translate(765 452) rotate(20) scale(1.35)" style="fill:var(--leaf1)"/><use href="#lf" transform="translate(765 452) rotate(44) scale(1.05)" style="fill:var(--leaf2)"/><path d="M729 446h72l-8 62a8 8 0 0 1-8 7h-40a8 8 0 0 1-8-7z" fill="#f4f1e8"/><rect x="729" y="444" width="72" height="9" rx="4" fill="#e6e1d2"/></g><g><use href="#lf" transform="translate(335 490) rotate(-40) scale(0.55)" style="fill:var(--leaf1)"/><use href="#lf" transform="translate(335 490) rotate(-10) scale(0.7)" style="fill:var(--leaf2)"/><use href="#lf" transform="translate(335 490) rotate(22) scale(0.55)" style="fill:var(--leaf3)"/><path d="M317 484h36l-8 44a8 8 0 0 1-8 7h-4a8 8 0 0 1-8-7z" fill="#f4f1e8"/><rect x="317" y="482" width="36" height="9" rx="4" fill="#e6e1d2"/></g><g><use href="#lf" transform="translate(690 490) rotate(-34) scale(0.5)" style="fill:var(--leaf1)"/><use href="#lf" transform="translate(690 490) rotate(0) scale(0.65)" style="fill:var(--leaf2)"/><use href="#lf" transform="translate(690 490) rotate(34) scale(0.5)" style="fill:var(--leaf3)"/><path d="M673 484h34l-8 43a8 8 0 0 1-8 7h-2a8 8 0 0 1-8-7z" fill="#f4f1e8"/><rect x="673" y="482" width="34" height="9" rx="4" fill="#e6e1d2"/></g>
+</svg>
+<div class="chalk" id="chalk" aria-live="polite">Choose a drink to see your cup.</div><button class="fs" data-fs="1" aria-label="Toggle full screen">⛶</button>
+<svg id="mug" viewBox="0 0 300 300" role="img" aria-label="Your drink being prepared">
+<defs><clipPath id="cp"><path id="cpP" d=""/></clipPath></defs>
+<ellipse cx="140" cy="292" rx="100" ry="7" fill="rgba(0,0,0,.2)"/>
+<g id="cup" style="transform-origin:140px 280px;transition:transform .6s">
+<path id="hnd" d="M204 150h18a26 26 0 0 1 0 64h-18" fill="none" stroke="#f7fbfb" stroke-width="14"/>
+<g clip-path="url(#cp)"><rect x="60" y="80" width="160" height="200" fill="#dcebed" opacity=".3"/>
+<g id="liq" style="transition:transform .9s ease"><rect id="lr" x="60" width="160" fill="#cfe4e8" style="transition:fill .9s"/><ellipse id="foam" cx="140" rx="64" ry="7" fill="#fff" opacity="0" style="transition:opacity .6s"/></g>
+<g id="pearl"></g><g id="ice"></g></g>
+<path id="out" d="" fill="#f7fbfb" fill-opacity=".3" stroke="#f7fbfb" stroke-width="6" stroke-linejoin="round"/>
+<rect id="rim" x="66" y="116" width="148" height="10" rx="5" fill="#f7fbfb"/><rect id="band" x="70" y="150" width="140" height="8" fill="var(--chk)"/>
+<g id="inf" opacity="0" style="transition:opacity .4s"><path d="M120 110h40l-6 36h-28z" fill="none" stroke="#6d838b" stroke-width="3"/></g>
+<g id="lid" opacity="0"><rect x="64" y="86" width="152" height="10" rx="5" fill="#9fb4bb"/><rect x="150" y="30" width="6" height="64" rx="3" fill="#e0524a" transform="rotate(8 153 94)"/></g>
+<g id="spoon" opacity="0"><rect x="136" y="90" width="7" height="120" rx="3" fill="#9fb4bb"/></g>
+<g class="steam" transform="translate(140 100)"><path d="M-30 0c-8-12 8-18 0-30"/><path d="M0 0c-8-12 8-18 0-30"/><path d="M30 0c-8-12 8-18 0-30"/></g></g>
+<g id="tPot" class="tool"><g id="potG" style="transform-origin:140px 40px"><rect x="70" y="24" width="70" height="42" rx="6" fill="#8fa3ab"/><rect x="38" y="34" width="32" height="8" rx="4" fill="#5d7279"/><rect x="68" y="20" width="74" height="6" rx="3" fill="#6d838b"/><path d="M140 28l9-4v9z" fill="#8fa3ab"/><rect id="pl" x="74" y="40" width="62" height="0" fill="#bfe0ea" style="transition:fill .6s"/><g class="bub" fill="#fff"><circle cx="92" cy="40" r="3"/><circle cx="106" cy="42" r="3"/><circle cx="120" cy="40" r="3"/></g></g></g>
+<g id="tMach" class="tool"><g id="machG"><rect x="64" y="6" width="152" height="34" rx="8" fill="#7c929a"/><rect x="134" y="40" width="12" height="14" fill="#5d7279"/><circle cx="84" cy="23" r="5" fill="#ffd9a8"/><circle cx="102" cy="23" r="5" fill="#7bd3a0"/><rect x="192" y="40" width="4" height="26" fill="#5d7279"/></g></g>
+<g id="tJug" class="tool"><g id="jugG" style="transform-origin:190px 40px"><path d="M168 8h44v40a8 8 0 0 1-8 8h-28a8 8 0 0 1-8-8z M168 14l-14 10l14 6z" fill="#e8eef0" stroke="#6d838b" stroke-width="3"/></g></g>
+<g id="tShake" class="tool"><g id="shG"><rect x="105" y="10" width="42" height="52" rx="10" fill="#9fb4bb"/><rect x="112" y="2" width="28" height="10" rx="5" fill="#6d838b"/></g></g>
+<g id="fx"></g></svg>
+</section>
+<section class="panel" id="panel"><h1 class="brand">Nukkad Café</h1><div id="view"></div></section>
+</main>
+<script>
+const $=s=>document.querySelector(s),NS="http://www.w3.org/2000/svg",sleep=ms=>new Promise(r=>setTimeout(r,ms)),RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const mix=(a,b,t)=>{const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)),x=p(a),y=p(b);return"#"+x.map((v,i)=>Math.round(v+(y[i]-v)*t).toString(16).padStart(2,"0")).join("")};
+// Recipe data kept apart from animation code. Fields: id,name,category,serving,ml,price,parameters,ingredients,steps,options,extras,colours,milk fraction,allergens,caffeine,steep seconds
+// step = act:label:seconds:?condition:colour   options: S shots, T strength, M milk required, m milk optional, W sweetness, I iced choice, P made in a pan
+const E="mach:Grinding and dosing:3|mach:Tamping evenly:1|",C="Contains caffeine";
+const D=[
+["espresso","Espresso","coffee","hot",30,80,"90–96 °C · 25–30 s extraction","Ground coffee|9 g;Water|30 ml","mach:Grinding the beans:2|mach:Dosing the portafilter:2|mach:Tamping evenly:1|mach:Locking into the machine:1|extract:Extracting espresso:4|sweet:Adding sugar:1:?sweet|serve:Serving at once:2","SW","","8a5a34,1b0d04",0,"",C],
+["americano","Americano","coffee","hot",200,90,"85–95 °C · 1 part espresso to 2–4 parts water","Espresso|1 shot;Hot water|150 ml","boil:Heating water:2|fill:Hot water into the cup:2|"+E+"extract:Extracting espresso over the water:4|milk:Adding milk:2:?milk|sweet:Adding sugar:1:?sweet|serve:Serving:2","STmW","","7a4d2a,2a1508",.15,"",C],
+["cappuccino","Cappuccino","coffee","hot",165,120,"Milk 55–65 °C · thick microfoam","Espresso|1 shot;Cold milk|115 ml",E+"extract:Extracting espresso:4|top:Adding syrup:1:?syrup:c98b3a|sweet:Adding sugar:1:?sweet|steam:Steaming milk to fine foam:4|milk:Pouring steamed milk:3|foam:Finishing with foam:2|top:Dusting cocoa:1:?cocoa:5a3a22|serve:Serving:2","SMTW","cocoa,syrup","8a5a34,1b0d04",.6,"",C],
+["latte","Caffè latte","coffee","hot",270,130,"Milk 55–65 °C · smooth microfoam","Espresso|1 shot;Milk|200 ml",E+"extract:Extracting espresso:4|top:Adding syrup:1:?syrup:c98b3a|sweet:Adding sugar:1:?sweet|steam:Steaming milk until silky:4|milk:Pouring milk into the espresso:3|foam:Thin foam layer:2|serve:Serving:2","SMTW","syrup","8a5a34,1b0d04",.7,"",C],
+["flat_white","Flat white","coffee","hot",165,130,"Milk 55–65 °C · very fine microfoam","Ristretto shots|2 shots (50 ml);Milk|115 ml",E+"extract:Pulling the shots:4|sweet:Adding sugar:1:?sweet|steam:Steaming to a glossy texture:4|milk:Pouring steadily:3|foam:Thin microfoam surface:2|serve:Serving:2","SMTW","","7a4d2a,1b0d04",.55,"",C],
+["mocha","Mocha","coffee","hot",270,150,"Milk 55–65 °C · chocolate to cafe sweetness standard","Espresso|1 shot;Milk|200 ml;Chocolate sauce|25 g","top:Adding chocolate sauce:2::4a2a18|"+E+"extract:Extracting espresso:4|stir:Stirring until dissolved:2|steam:Steaming milk:4|milk:Pouring milk:3|foam:Adding foam:1|top:Adding whipped cream:2:?cream:ffffff|sweet:Adding sugar:1:?sweet|serve:Serving:2","SMTW","cream","6a4026,2a1408",.5,"May contain soy or nuts (confirm with cafe)",C],
+["espresso_macchiato","Espresso macchiato","coffee","hot",75,100,"Single shot · a spoon of foamed milk","Espresso|1 shot;Milk foam|2 tsp",E+"extract:Extracting espresso:4|steam:Foaming a little milk:3|foam:Spooning foam on top:2|sweet:Adding sugar:1:?sweet|serve:Serving:2","SW","","8a5a34,1b0d04",0,"Dairy",C],
+["cortado","Cortado","coffee","hot",120,110,"Milk 55–65 °C · lightly textured, little foam","Espresso|2 shots (50 ml);Warm milk|50 ml",E+"extract:Extracting espresso:4|steam:Warming and lightly texturing milk:3|milk:Pouring equal milk:3|sweet:Adding sugar:1:?sweet|serve:Serving:2","SMW","","8a5a34,1b0d04",.45,"",C],
+["iced_latte","Iced latte","coffee","iced",400,140,"Chilled milk, not steamed","Espresso|1 shot;Cold milk|210 ml;Ice|120 g","ice:Filling the glass with ice:2|milk:Adding cold milk:2|"+E+"extract:Extracting espresso over milk and ice:4|top:Adding syrup:1:?syrup:c98b3a|sweet:Adding sugar:1:?sweet|stir:Stirring:2|lid:Fitting the lid and straw:2","SMTW","syrup","8a5a34,1b0d04",.65,"",C],
+["iced_americano","Iced americano","coffee","iced",400,110,"Espresso over cold water and ice","Espresso|1 shot;Cold water|180 ml;Ice|120 g","ice:Filling the glass with ice:2|fill:Adding cold water:2|"+E+"extract:Extracting espresso over the ice:4|milk:Adding milk:2:?milk|sweet:Adding sugar:1:?sweet|lid:Fitting the lid:2","STmW","","7a4d2a,2a1508",.15,"",C],
+["cold_brew","Cold brew","coffee","iced",300,130,"Brewed 12–18 h in advance, so only the service steps are shown","Cold brew|180 ml;Ice|120 g","ice:Filling the glass with ice:2|pour:Pouring pre-prepared cold brew:3|milk:Adding milk:2:?milk|top:Adding syrup:1:?syrup:c98b3a|sweet:Adding sugar:1:?sweet|lid:Fitting the lid:2","TmW","syrup","8a5a34,1b0d04",.3,"",C],
+["south_indian_filter_coffee","South Indian filter coffee","coffee","hot",165,60,"Decoction drips 15–30 min · milk heated separately","Filter coffee powder|18 g;Hot water|135 ml;Milk|115 ml","mach:Pressing powder in the filter:2|boil:Pouring hot water over the powder:2|wait:Decoction dripping (sped up):3|steam:Heating milk separately:3|pour:Adding the decoction:2|milk:Adding milk:2|sweet:Adding sugar:1:?sweet|froth:Pouring between tumbler and davara:3|serve:Serving:2","MTW","","8a5a34,3a1d0a",.5,"",C],
+["affogato","Affogato","coffee","cold","220",150,"A scoop of vanilla ice cream under fresh espresso","Vanilla ice cream|70 g;Espresso|1 shot","top:Placing the ice cream scoop:2:?:fff6e0|"+E+"extract:Pouring fresh espresso over the ice cream:4|serve:Serving at once:2","S","","8a5a34,1b0d04",.2,"Dairy (check the ice cream label)",C],
+["green_tea","Green tea","tea","hot",225,50,"Water 70–80 °C · steep 2–3 min · no milk","Green tea leaves|2 g;Water|225 ml","boil:Heating water to 75 °C:3|add:Adding green tea leaves:2::8aa83a|fill:Pouring hot water:3|steep:Steeping {steep}:5|remove:Removing the leaves:2|top:Stirring in honey:1:?honey:e0a82e|top:Adding lemon:1:?lemon:f2d84a|sweet:Adding sugar:1:?sweet|serve:Serving plain:2","TW","lemon,honey","dcd98a,8aa83a",0,"",C,"120,180"],
+["black_tea","Black tea","tea","hot",225,40,"Water 95–100 °C · steep 3–5 min · plain by default","Black tea leaves|2 g;Water|225 ml","boil:Boiling fresh water:3|add:Adding black tea:2::5e280c|fill:Pouring hot water:3|steep:Steeping {steep}:5|remove:Removing the leaves:2|milk:Adding milk:2:?milk|top:Adding honey:1:?honey:e0a82e|top:Adding lemon:1:?lemon:f2d84a|sweet:Adding sugar:1:?sweet|serve:Serving:2","TmW","lemon,honey","d79b3d,5e280c",.2,"",C,"180,300"],
+["masala_chai","Masala chai","tea","hot",190,40,"Simmer 3–5 min after the tea and spices go in","Water|100 ml;Milk|100 ml;Black tea|2 g;Chai masala|1.5 g","boil:Heating water in the saucepan:2|add:Adding chai masala:2:?:7a4a1a|add:Crushing in ginger:1:?ginger:cfa24a|add:Adding cardamom:1:?cardamom:9ab36a|simmer:Bringing to a simmer:3|add:Adding black tea:2::5e280c|milk:Adding milk:2|sweet:Adding sugar:1:?sweet|simmer:Simmering to colour:3|strain:Straining into the cup:3|serve:Serving:2","MTWP","ginger,cardamom","d79b3d,7a3a10",.45,"",C],
+["lemon_iced_tea","Lemon iced tea","tea","iced",400,70,"Brew 95–100 °C for 3–4 min, then chill","Black tea|2 g;Hot water|150 ml;Cold water|75 ml;Lemon juice|12 ml;Ice|120 g","boil:Boiling water:2|add:Adding black tea:2::5e280c|fill:Pouring hot water:3|steep:Brewing strong tea:5|remove:Removing the leaves:2|top:Adding lemon juice:1::f2d84a|sweet:Adding sugar syrup:1:?sweet|ice:Filling the glass with ice:2|stir:Stirring:2|top:Garnishing with a lemon slice:1::f2d84a|lid:Fitting the lid:2","TW","","c77f2c,6a2e0e",0,"",C,"180,240"],
+["matcha","Matcha","tea","hot",70,90,"Water 70–80 °C · water and matcha only","Matcha powder|2 g;Water|70 ml","boil:Heating water to 75 °C:3|add:Sifting matcha into the bowl:2::7ea63a|fill:Adding a little warm water:2|stir:Whisking until frothy:3|foam:Light foam on top:1|serve:Serving:2","TW","","a5c45a,6f8f2a",0,"",C],
+["matcha_latte","Matcha latte","tea","hot",290,140,"Milk 55–65 °C · whisked matcha","Matcha powder|2 g;Water|45 ml;Milk|210 ml","add:Sifting matcha:2::7ea63a|fill:Adding a little warm water:2|stir:Whisking until smooth:3|steam:Steaming milk:4|milk:Pouring milk:3|stir:Gently combining:2|sweet:Adding sweetener:1:?sweet|serve:Serving:2","MTWI","","a5c45a,6f8f2a",.6,"",C],
+["ginger_tea","Ginger tea","tea","hot",225,45,"Simmer ginger 5–8 min · plain, no milk","Fresh ginger|8 g;Water|220 ml","boil:Heating water in the saucepan:2|add:Adding sliced ginger:2::cfa24a|simmer:Simmering the ginger:4|strain:Straining into the cup:3|top:Adding honey:1:?honey:e0a82e|sweet:Adding sugar:1:?sweet|serve:Serving:2","TW","honey,lemon","e4c36a,b9832a",0,"","Usually caffeine-free (depends on recipe)"],
+["peppermint_tea","Peppermint tea","tea","hot",225,45,"Water 95 °C · steep 5–7 min · no milk","Dried peppermint|2 g;Water|225 ml","boil:Heating water:3|add:Adding peppermint leaves:2::4f9a5a|fill:Pouring hot water:3|steep:Steeping {steep}:5|remove:Removing the leaves:2|top:Adding honey:1:?honey:e0a82e|sweet:Adding sugar:1:?sweet|serve:Serving:2","TW","honey","d9e6a0,86b858",0,"","Usually caffeine-free","300,420"],
+["chamomile_tea","Chamomile tea","tea","hot",225,45,"Water 95 °C · steep about 5 min · no milk","Dried chamomile|2.5 g;Water|225 ml","boil:Heating water:3|add:Adding chamomile flowers:2::ecd36a|fill:Pouring hot water:3|steep:Steeping {steep}:5|remove:Removing the flowers:2|top:Adding honey:1:?honey:e0a82e|sweet:Adding sugar:1:?sweet|serve:Serving:2","TW","honey","f0e0a0,d9b84a",0,"","Usually caffeine-free","240,330"],
+["hibiscus_tea","Hibiscus tea","tea","hot",225,55,"Water 95 °C · steep 5–7 min · hot or iced","Dried hibiscus|2.5 g;Water|225 ml","boil:Heating water:3|add:Adding hibiscus petals:2::b3203a|fill:Pouring hot water:3|steep:Steeping {steep}:5|strain:Straining:2|ice:Pouring over ice:2:?iced|top:Adding lemon:1:?lemon:f2d84a|sweet:Adding sweetener:1:?sweet|serve:Serving:2","TWI","lemon","e58a98,a3162e",0,"","Usually caffeine-free","300,420"],
+["lemongrass_tea","Lemongrass tea","tea","hot",235,50,"Simmer lemongrass 5–8 min · no milk","Fresh lemongrass|8 g;Water|235 ml","boil:Heating water:2|add:Adding crushed lemongrass:2::b9c96a|simmer:Simmering:4|strain:Straining into the cup:3|top:Adding lemon:1:?lemon:f2d84a|top:Adding honey:1:?honey:e0a82e|sweet:Adding sugar:1:?sweet|serve:Serving:2","TW","lemon,honey,ginger","e8e09a,c0b24a",0,"","Usually caffeine-free"],
+["kashmiri_kahwa","Kashmiri kahwa","tea","hot",190,90,"Brew gently · steep 3–4 min · no milk","Green tea|2 g;Water|200 ml;Cinnamon|1 piece;Cardamom|1 pod;Saffron|a few strands;Almonds|4 g","boil:Heating water with cinnamon and cardamom:3|simmer:Simmering the spices briefly:3|add:Adding green tea off the boil:2::8aa83a|steep:Steeping {steep}:4|add:Adding saffron:1::e8a317|strain:Straining into the cup:3|top:Garnishing with almond slivers:1::f1e2bd|sweet:Adding sugar:1:?sweet|serve:Serving:2","TWP","","e8c36a,c9962a",0,"Tree nuts",C,"180,240"],
+["thai_milk_tea","Thai milk tea","tea","iced",400,100,"Strong brew 95–100 °C for 3–5 min","Thai-style black tea|4.5 g;Hot water|150 ml;Condensed milk|25 ml;Evaporated milk|40 ml;Ice|125 g","boil:Boiling water:2|add:Adding strong Thai-style tea:2::b5541c|fill:Pouring hot water:3|steep:Brewing strong tea:5|remove:Straining the tea:2|ice:Filling the glass with ice:2|pour:Pouring tea over ice:3|milk:Topping with evaporated milk:3|lid:Fitting the lid:2","TW","","e08a3c,b5541c",.4,"Dairy (condensed and evaporated milk)",C,"180,300"],
+["bubble_tea","Bubble tea","tea","iced",475,140,"Pearls cooked to the supplier’s instructions in advance","Brewed tea|175 ml;Milk|125 ml;Tapioca pearls|65 g;Sugar syrup|18 ml;Ice","pearls:Spooning in the cooked pearls:3|ice:Filling with ice:2|shake:Shaking tea, milk and syrup:3|pour:Pouring the shaken drink:3|lid:Sealing the cup, wide straw:2","MTW","","d2a05e,8a4a1a",.5,"Depends on tea, milk and toppings",C]
+];
+const R={};D.forEach(a=>R[a[0]]={id:a[0],name:a[1],cat:a[2],srv:a[3],ml:+a[4],price:a[5],par:a[6],ings:a[7].split(";").map(x=>x.split("|")),steps:a[8],o:a[9],x:a[10]?a[10].split(","):[],col:a[11].split(",").map(h=>"#"+h),mf:a[12],al:a[13],caf:a[14],st:a[15]?a[15].split(",").map(Number):null,pan:/P/.test(a[9])});
+const MILKS=["Whole","Skim","Oat","Soy","Almond"],SYR=["Vanilla","Caramel","Hazelnut","Chocolate"],XL={lemon:"Lemon",honey:"Honey",ginger:"Ginger",cardamom:"Cardamom",cocoa:"Cocoa dust",cream:"Whipped cream"},SZ=["Small","Regular","Large"],SF=[.8,1,1.25],SW=["No sugar","Less","Regular","Extra"],SH=["Single","Double","Extra shot"],STR=["Mild","Regular","Strong"];
+const SH_={hot:{c:"M76 126h128v112a28 28 0 0 1-28 28h-72a28 28 0 0 1-28-28z",o:"M70 120h140v118a34 34 0 0 1-34 34h-72a34 34 0 0 1-34-34z",top:126},gl:{c:"M84 96h112l-10 156a20 20 0 0 1-20 18h-52a20 20 0 0 1-20-18z",o:"M78 90h124l-10 162a26 26 0 0 1-26 24h-52a26 26 0 0 1-26-24z",top:96}};
+let dr=null,sel={size:1,shots:1,str:1,milk:"",sweet:0,iced:0,x:{},syrup:""},mode="menu",tok=0,runId=0,ST={},span=140,topY=126;
+const glass=()=>!!dr&&(dr.srv!="hot"||!!sel.iced),bc=()=>mix(dr.col[0],dr.col[1],sel.str/2),fc=()=>mix(bc(),"#f4e8d4",sel.milk?Math.min(.85,dr.mf*1.7):0);
+const surf=()=>268-ST.L*span;
+function shape(){const g=glass()?SH_.gl:SH_.hot;topY=g.top;span=268-topY;$("#cpP").setAttribute("d",g.c);$("#out").setAttribute("d",g.o);$("#hnd").style.display=$("#rim").style.display=$("#band").style.display=glass()?"none":"";$("#lr").setAttribute("y",topY);$("#lr").setAttribute("height",span+12);$("#foam").setAttribute("cy",topY);$("#cup").style.transform=`scale(${[.9,1,1.08][sel.size]})`}
+function draw(){$("#lr").setAttribute("fill",ST.color);$("#liq").style.transform=`translateY(${(1-ST.L)*span+(ST.L?0:14)}px)`;$("#foam").style.opacity=ST.foam?.9:0}
+function reset(){ST={L:0,color:"#cfe4e8",foam:0,strained:0,potC:"#bfe0ea"};["#fx","#ice","#pearl"].forEach(s=>$(s).innerHTML="");["#inf","#lid","#spoon"].forEach(s=>$(s).style.opacity=0);show();$("#stage").classList.remove("hot");setPot(0);shape();draw()}
+function preview(){reset();ST.L=.82;ST.color=fc();ST.foam=/foam/.test(dr.steps)&&sel.milk?1:0;if(glass()){ice(5)}draw()}
+function el(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);$("#fx").appendChild(e);return e}
+function anim(e,kf,o){if(RM){e.remove();return}e.animate(kf,{fill:"forwards",...o}).onfinish=()=>e.remove()}
+function show(n){document.querySelectorAll(".tool").forEach(t=>t.classList.toggle("on",t.id==n))}
+function setPot(l,c){const p=$("#pl");if(c){ST.potC=c;p.setAttribute("fill",c)}p.setAttribute("height",l*30);p.setAttribute("y",62-l*30)}
+function fall(n,fill,type,pot){for(let i=0;i<n;i++){const x=pot?82+Math.random()*50:108+Math.random()*64,y0=pot?4:62,y1=pot?44:Math.max(y0+10,surf()-8);
+const e=type=="cube"?el("rect",{x,y:y0,width:13,height:13,rx:3,fill:"#fff",stroke:"#b9c8cc"}):type=="slice"?el("circle",{cx:x,cy:y0,r:9,fill,stroke:"#d9b92e","stroke-width":2}):el("circle",{cx:x,cy:y0,r:type=="blob"?9:2+Math.random()*2.5,fill});
+anim(e,[{transform:"translateY(0)",opacity:1},{transform:`translateY(${y1-y0}px)`,opacity:1,offset:.85},{transform:`translateY(${y1-y0+6}px)`,opacity:0}],{duration:650,delay:i*80,easing:"ease-in"})}}
+function stream(color,y0,dur,x=138){const e=el("rect",{x,y:y0,width:7,height:Math.max(20,surf()-y0),rx:3,fill:color,opacity:.9});e.style.transformBox="fill-box";e.style.transformOrigin="50% 0";anim(e,[{transform:"scaleY(0)"},{transform:"scaleY(1)",offset:.2},{transform:"scaleY(1)",offset:.8},{transform:"scaleY(1)",opacity:0}],{duration:Math.max(500,dur-150)})}
+function tilt(id,deg,dur){if(!RM)$(id).animate([{transform:"rotate(0)"},{transform:`rotate(${deg}deg)`,offset:.25},{transform:`rotate(${deg}deg)`,offset:.8},{transform:"rotate(0)"}],{duration:dur})}
+function ice(n){for(let i=0;i<n;i++){const e=document.createElementNS(NS,"rect");e.setAttribute("x",92+Math.random()*70);e.setAttribute("y",surf()-10+Math.random()*16);e.setAttribute("width",22);e.setAttribute("height",22);e.setAttribute("rx",4);e.setAttribute("fill","#fff");e.setAttribute("opacity",.55);e.setAttribute("transform",`rotate(${Math.random()*40-20} 120 ${surf()})`);$("#ice").appendChild(e)}}
+const money=()=>{let p=dr.price+[-10,0,15][sel.size]+(sel.shots-1)*(sel.shots==3?22:25);if(sel.milk&&sel.milk!="Whole"&&sel.milk!="Skim")p+=20;p+=Object.values(sel.x).filter(Boolean).length*10+(sel.syrup?15:0);return p};
+const chip=(k,v,l,on)=>`<button class="opt" aria-pressed="${on}" data-k="${k}" data-v="${v}">${l}</button>`;
+function menu(){const g=c=>D.filter(a=>a[2]==c).map(a=>`<button class="opt" data-pick="${a[0]}">${a[1]}<small>${a[4]} ml · ₹${a[5]}</small></button>`).join("");
+$("#view").innerHTML=`<h2>What can we make you?</h2><h3>Coffee</h3><div class="grid">${g("coffee")}</div><h3>Tea</h3><div class="grid">${g("tea")}</div><p class="note">Recipes are starting standards. Quantities, temperatures and times are calibrated with each cafe’s own staff.</p>`;mode="menu";dr=null;reset();$("#chalk").textContent="Choose a drink to see your cup."}
+function custom(){const o=dr.o,al=[];if(sel.milk){["Whole","Skim"].includes(sel.milk)&&al.push("Dairy");sel.milk=="Soy"&&al.push("Soy");sel.milk=="Almond"&&al.push("Tree nuts");sel.milk=="Oat"&&al.push("Oats (confirm gluten with cafe)")}dr.al&&al.push(dr.al);
+const f=SF[sel.size],sc=s=>s.replace(/[\d.]+/,n=>Math.round(n*f*10)/10),G=(t,h)=>`<h3>${t}</h3><div class="chips">${h}</div>`;
+let h=`<button class="btn ghost" data-back="1" style="align-self:flex-start">Back to menu</button><h2>${dr.name}</h2><p class="sub">${dr.par}</p>`;
+h+=G("Size",SZ.map((l,i)=>chip("size",i,l+" · "+Math.round(dr.ml*SF[i])+" ml",sel.size==i)).join(""));
+if(/I/.test(o))h+=G("Temperature",chip("iced",0,"Hot",!sel.iced)+chip("iced",1,"Iced",!!sel.iced));
+if(/S/.test(o))h+=G("Espresso",SH.map((l,i)=>chip("shots",i+1,l,sel.shots==i+1)).join(""));
+if(/T/.test(o))h+=G("Strength",STR.map((l,i)=>chip("str",i,l,sel.str==i)).join(""));
+if(/[Mm]/.test(o))h+=G("Milk",(/m/.test(o)?chip("milk","","None",!sel.milk):"")+MILKS.map(m=>chip("milk",m,m,sel.milk==m)).join(""));
+if(/W/.test(o))h+=G("Sweetness",SW.map((l,i)=>chip("sweet",i,l,sel.sweet==i)).join(""));
+if(dr.x.includes("syrup"))h+=G("Syrup",chip("syrup","","None",!sel.syrup)+SYR.map(s=>chip("syrup",s,s,sel.syrup==s)).join(""));
+const ex=dr.x.filter(x=>x!="syrup");if(ex.length)h+=G("Add-ons",ex.map(x=>`<button class="opt" aria-pressed="${!!sel.x[x]}" data-x="${x}">${XL[x]}</button>`).join(""));
+h+=`<div class="card"><b>Recipe</b><ul>${dr.ings.map(i=>`<li><span>${i[0]}</span><span>${/\d/.test(i[1])?sc(i[1]):i[1]}</span></li>`).join("")}</ul><p class="note" style="margin:8px 0 0">${al.length?"Allergens: "+al.join(", "):"Allergens: none listed, confirm with cafe"} · ${dr.caf}. Please confirm with the cafe.</p></div>
+<button class="btn" data-order="1">Place order · ₹${money()}</button>`;
+$("#view").innerHTML=h;mode="custom";applyState();$("#chalk").innerHTML=`<span><b>${dr.name}</b>, ${SZ[sel.size].toLowerCase()}${sel.milk?", "+sel.milk.toLowerCase()+" milk":", no milk"}${sel.sweet?"":", no sugar"}</span>`}
+function applyState(){shape();ST.L=glass()?.8:.74;ST.color=fc();ST.foam=/foam/.test(dr.steps)&&sel.milk?1:0;$("#ice").innerHTML="";$("#pearl").innerHTML="";if(glass())ice(5);
+if(dr.id=="bubble_tea"){for(let i=0;i<12;i++){const e=document.createElementNS(NS,"circle");e.setAttribute("cx",98+(i%6)*20+(Math.floor(i/6)*9));e.setAttribute("cy",254-Math.floor(i/6)*17);e.setAttribute("r",8);e.setAttribute("fill","#2a1a12");$("#pearl").appendChild(e)}}draw()}
+function pulse(k,v){const d=1500;let t=null;
+if(k=="drink"||k=="shots"){if(dr.cat=="coffee"){t="tMach";stream(dr.col[1],54,d)}else{t="tPot";tilt("#potG",-22,d);stream("#bcdde6",30,d);fall(8,dr.col[1],"dot")}}
+else if(k=="str")fall(8+sel.str*5,dr.col[1],"dot");
+else if(k=="milk"&&sel.milk){t="tJug";tilt("#jugG",-38,d);stream("#fbf4e6",34,d,150)}
+else if(k=="sweet"&&sel.sweet)fall(sel.sweet*2,"","cube");
+else if(k=="syrup"&&sel.syrup)fall(4,"#c98b3a","dot");
+else if(k=="x")fall(4,v=="lemon"?"#f2d84a":v=="honey"?"#e0a82e":v=="cream"?"#fff":"#7a5a2a",v=="lemon"?"slice":v=="cream"?"blob":"dot");
+else if(k=="iced"&&sel.iced)fall(5,"","cube");
+show(t||"");if(t)setTimeout(()=>show(""),d)}
+function order(){const n=100+Math.floor(Math.random()*900),tags=[SZ[sel.size],sel.iced?"iced":"",sel.milk?sel.milk+" milk":"no milk",sel.sweet?SW[sel.sweet]+" sugar":"no sugar",sel.syrup,...Object.keys(sel.x).filter(k=>sel.x[k]).map(k=>XL[k])].filter(Boolean).join(", ");
+$("#view").innerHTML=`<div class="done" style="display:flex;flex-direction:column;gap:10px"><div class="ck">✓</div><h2>Order confirmed</h2><div class="tok">#${n}</div><p style="margin:0"><b>${dr.name}</b><br><span class="sub">${tags}</span></p><p style="margin:0">Total ₹${money()}</p><p class="sub">We’ll call your number when it’s ready.</p><button class="btn" data-new="1">Order something else</button></div>`;mode="done";$("#chalk").textContent="Order #"+n+" confirmed";if(!glass())$("#stage").classList.add("hot")}
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const d=b.dataset;
+if(d.fs){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen().catch(()=>{});return}
+if(d.pick){dr=R[d.pick];sel={size:1,shots:1,str:1,milk:/M/.test(dr.o)?"Whole":"",sweet:0,iced:dr.srv=="iced"?1:0,x:{},syrup:""};reset();custom();$("#panel").scrollTop=0;pulse("drink")}
+else if(d.back||d.new){reset();menu();$("#panel").scrollTop=0}
+else if(d.k){const sc=$("#panel").scrollTop;sel[d.k]=["size","shots","str","sweet","iced"].includes(d.k)?+d.v:d.v;custom();$("#panel").scrollTop=sc;pulse(d.k,d.v)}
+else if(d.x){const sc=$("#panel").scrollTop;sel.x[d.x]=!sel.x[d.x];custom();$("#panel").scrollTop=sc;if(sel.x[d.x])pulse("x",d.x)}
+else if(d.order)order()});
+reset();menu();
+</script></body></html>
